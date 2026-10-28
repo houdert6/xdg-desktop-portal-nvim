@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.freedesktop.impl.portal.desktop.nvim
+Exec=/usr/lib/xdg-desktop-portal-nvim
+SystemdService=xdg-desktop-portal-nvim.service
