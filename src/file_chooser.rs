@@ -58,7 +58,7 @@ impl FileChooser {
             Ok(uri) => {
                 //let mut map = std::collections::HashMap::new::<String, zbus::zvariant::OwnedValue>();
                 //let ctxt = Context::new_dbus(LE, 0);
-                let uris = vec!["file://".to_owned() + uri.as_str()];
+                let uris = vec!["file://".to_owned() + uri.as_str().trim()];
                 //map.insert("uris".to_owned(), to_bytes(ctxt, &uris).expect("failed to encode uris").to_owned());
                 //map.insert("uris".to_owned(), OwnedValue::from(uris));
                 let _ = std::fs::remove_file(file_path);
@@ -83,8 +83,8 @@ impl FileChooser {
         parent_window: &str,
         title: &str,
         options: std::collections::HashMap<&str, zbus::zvariant::Value<'_>>,
-    ) -> std::collections::HashMap<String, zbus::zvariant::OwnedValue> {
-        std::collections::HashMap::new()
+    ) -> (u32, FileChooserResult) {
+        self.open_file(handle, app_id, parent_window, title, options)
     }
 
     /// SaveFiles method
@@ -96,7 +96,7 @@ impl FileChooser {
         parent_window: &str,
         title: &str,
         options: std::collections::HashMap<&str, zbus::zvariant::Value<'_>>,
-    ) -> std::collections::HashMap<String, zbus::zvariant::OwnedValue> {
-        std::collections::HashMap::new()
+    ) -> (u32, FileChooserResult) {
+        self.open_file(handle, app_id, parent_window, title, options)
     }
 }
